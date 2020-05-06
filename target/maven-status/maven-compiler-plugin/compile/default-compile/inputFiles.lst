@@ -1,0 +1,7 @@
+/home/venkatalokesh/projects/tech-blogging/src/main/java/fr/blogging/www/service/TechNewsService.java
+/home/venkatalokesh/projects/tech-blogging/src/main/java/fr/blogging/www/DAO/TechNewsDAO.java
+/home/venkatalokesh/projects/tech-blogging/src/main/java/fr/blogging/www/controllers/TechNewsController.java
+/home/venkatalokesh/projects/tech-blogging/src/main/java/fr/blogging/www/serviceImplimentation/TechNewsServiceImpl.java
+/home/venkatalokesh/projects/tech-blogging/src/main/java/fr/blogging/www/Model/RssEntity.java
+/home/venkatalokesh/projects/tech-blogging/src/main/java/fr/blogging/www/DAOimpl/TechNewsDAOimpl.java
+/home/venkatalokesh/projects/tech-blogging/src/main/java/fr/blogging/www/MyCORSFilter.java

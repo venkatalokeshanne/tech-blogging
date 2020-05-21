@@ -26,6 +26,7 @@ import fr.blogging.www.DAO.TechNewsDAO;
 import fr.blogging.www.Model.News;
 import fr.blogging.www.Model.RssEntity;
 import fr.blogging.www.Model.WorldNews;
+import fr.blogging.www.VO.WorldNewsVO;
 import fr.blogging.www.service.TechNewsService;
 
 @Service
@@ -87,6 +88,12 @@ public class TechNewsServiceImpl implements TechNewsService {
          techNewsDAO.worldDataAdd(news,worldNews.getStatus(),worldNews.getId());
         log.debug("get author::"+news.getAuthor());
 }
+    }
+
+    @Override
+    public List<WorldNewsVO> getListOfNews(List<WorldNewsVO> newsList) {
+        newsList = techNewsDAO.getListOfNews(newsList);
+        return newsList;
     }
 
 }

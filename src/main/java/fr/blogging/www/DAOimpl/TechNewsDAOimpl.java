@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 import fr.blogging.www.DAO.TechNewsDAO;
 import fr.blogging.www.Model.News;
 import fr.blogging.www.Model.RssEntity;
+import fr.blogging.www.Model.WorldNews;
+import fr.blogging.www.VO.WorldNewsVO;
 
 @Repository
 public class TechNewsDAOimpl implements TechNewsDAO {
@@ -54,15 +56,42 @@ public class TechNewsDAOimpl implements TechNewsDAO {
     @Override
     public void worldDataAdd(News news, String status, String id) {
         try {
-            if(news.getContent()!=null){
-            String sql = "Insert into world_news(source,status,author,content,description,publishedAt,title,url,urlToImage) values('"+news.getSource().getName()+"','"+status+"','" + news.getAuthor().replace("'", "''") + "','" + news.getContent().replace("'", "''")
-            + "','" + news.getDescription().replace("'", "''") + "','" + news.getPublishedAt().replace("'", "''") + "','" + news.getTitle().replace("'", "''") + "','" + news.getUrl().replace("'", "''") + "','" + news.getUrlToImage().replace("'", "''") + "')";
-        log.debug("sql::" + sql);
-        jdbcTemplate.update(sql);
+            if (news.getContent() != null) {
+                String sql = "Insert into world_news(source,status,author,content,description,publishedAt,title,url,urlToImage) values('"
+                        + news.getSource().getName() + "','" + status + "','" + news.getAuthor().replace("'", "''")
+                        + "','" + news.getContent().replace("'", "''") + "','"
+                        + news.getDescription().replace("'", "''") + "','" + news.getPublishedAt().replace("'", "''")
+                        + "','" + news.getTitle().replace("'", "''") + "','" + news.getUrl().replace("'", "''") + "','"
+                        + news.getUrlToImage().replace("'", "''") + "')";
+                log.debug("sql::" + sql);
+                jdbcTemplate.update(sql);
             }
         } catch (NullPointerException e) {
-            
+
         }
+    }
+
+    @Override
+    public List<WorldNewsVO> getListOfNews(List<WorldNewsVO> newsList) {
+        String sql = "Select * from world_news";
+        newsList = jdbcTemplate.query(sql, new RowMapper<WorldNewsVO>() {
+
+            @Override
+            public WorldNewsVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                WorldNewsVO newsEntity = new WorldNewsVO();
+                newsEntity.setTitle(rs.getString("title"));
+                newsEntity.setUrl(rs.getString("url"));
+                newsEntity.setPublishedAt(rs.getString("publishedAt"));
+                newsEntity.setAuthor(rs.getString("author"));
+                newsEntity.setDescription(rs.getString("description"));
+                newsEntity.setName(rs.getString("source"));
+                newsEntity.setUrlToImage(rs.getString("urlToImage"));
+                log.debug("pojo ::" + newsEntity);
+                return newsEntity;
+            }
+        });
+        log.debug("list of pojo ::" + newsList);
+        return newsList;
     }
     
 }

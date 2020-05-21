@@ -9,6 +9,7 @@ import org.xml.sax.SAXException;
 
 import fr.blogging.www.Model.RssEntity;
 import fr.blogging.www.Model.WorldNews;
+import fr.blogging.www.VO.WorldNewsVO;
 
 public interface TechNewsService {
 
@@ -17,5 +18,7 @@ public interface TechNewsService {
 	List<RssEntity> getListOfRss(List<RssEntity> rssList);
 
 	void worldData(WorldNews worldNews);
+
+	List<WorldNewsVO> getListOfNews(List<WorldNewsVO> newsList);
     
 }

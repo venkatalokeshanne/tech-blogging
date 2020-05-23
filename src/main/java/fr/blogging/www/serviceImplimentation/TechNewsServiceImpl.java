@@ -1,6 +1,9 @@
 package fr.blogging.www.serviceImplimentation;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,14 +41,18 @@ public class TechNewsServiceImpl implements TechNewsService {
     TechNewsDAO techNewsDAO;
 
     public void saveRssData(RssEntity rss) throws SAXException, IOException, DOMException, ParseException {
-        String url = "https://code.tutsplus.com/posts.atom";
+        URL url = new URL("https://code.tutsplus.com/posts.atom");
         DocumentBuilderFactory doc = DocumentBuilderFactory.newInstance();
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date date = null;
         try {
+            URLConnection urlc = url.openConnection();
+            urlc.setRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; "
+            + "Windows NT 5.1; en-US; rv:1.8.0.11) ");
+            InputStream inputFile = urlc.getInputStream();
             DocumentBuilder builder = doc.newDocumentBuilder();
-            Document docment = builder.parse(url);
+            Document docment = builder.parse(inputFile);
 
             NodeList entityList = docment.getElementsByTagName("entry");
             for (int i = 0; i <= entityList.getLength(); i++) {

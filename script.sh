@@ -8,8 +8,8 @@ mvn package
 
 rm /home/venkatalokesh/apache-tomcat-9.0.34/logs/*
 
-rm /home/venkatalokesh/apache-tomcat-9.0.34/webapps/tech-blogging-1.0-SNAPSHOT.war
+rm /home/venkatalokesh/apache-tomcat-9.0.34/webapps/tech-blogging.war
 
-mv /home/venkatalokesh/projects/tech-blogging/target/tech-blogging-1.0-SNAPSHOT.war /home/venkatalokesh/apache-tomcat-9.0.34/webapps
+mv /home/venkatalokesh/projects/tech-blogging/target/tech-blogging.war /home/venkatalokesh/apache-tomcat-9.0.34/webapps
 
 /home/venkatalokesh/apache-tomcat-9.0.34/bin/startup.sh

@@ -110,7 +110,6 @@ public class TechNewsController {
             ObjectMapper objectMapper = new ObjectMapper();
             game = objectMapper.readValue(new File("src/main/resources/test.json"), Games.class);
             
-            log.debug("game::"+game);
             for(int i=0;i<game.getResults().length;i++){
                 ResultsVO resultsVO = new ResultsVO();
             resultsVO.setId(game.getResults()[i].getId());
